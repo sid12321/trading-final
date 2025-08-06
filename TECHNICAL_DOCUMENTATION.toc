@@ -1,0 +1,57 @@
+\contentsline {section}{\numberline {1}Introduction}{3}{section.1}%
+\contentsline {section}{\numberline {2}System Architecture}{3}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Core Components}{3}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Hardware Optimization}{3}{subsection.2.2}%
+\contentsline {section}{\numberline {3}Signal Generation and Feature Engineering}{4}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Technical Indicators}{4}{subsection.3.1}%
+\contentsline {subsubsection}{\numberline {3.1.1}Basic Price Features}{4}{subsubsection.3.1.1}%
+\contentsline {subsubsection}{\numberline {3.1.2}Technical Indicators}{4}{subsubsection.3.1.2}%
+\contentsline {subsubsection}{\numberline {3.1.3}Market Regime Detection}{4}{subsubsection.3.1.3}%
+\contentsline {subsubsection}{\numberline {3.1.4}Pivot Point Analysis}{5}{subsubsection.3.1.4}%
+\contentsline {subsection}{\numberline {3.2}Quantile Normalization}{5}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}CPU-Optimized Signal Generation}{5}{subsection.3.3}%
+\contentsline {section}{\numberline {4}Bounded Entropy PPO Algorithm}{5}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Entropy Bounds Implementation}{5}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Value Loss Bounds}{5}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Hyperparameter Scheduling}{6}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.4}Mixed Precision Training}{6}{subsection.4.4}%
+\contentsline {section}{\numberline {5}Trading Environment Design}{6}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Environment Structure}{6}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Action Space Definition}{6}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}Daily Position Liquidation}{7}{subsection.5.3}%
+\contentsline {subsection}{\numberline {5.4}Multi-Component Reward Function}{7}{subsection.5.4}%
+\contentsline {subsubsection}{\numberline {5.4.1}Base Rewards}{7}{subsubsection.5.4.1}%
+\contentsline {subsubsection}{\numberline {5.4.2}Position Rewards}{7}{subsubsection.5.4.2}%
+\contentsline {subsubsection}{\numberline {5.4.3}Risk Penalties}{7}{subsubsection.5.4.3}%
+\contentsline {subsubsection}{\numberline {5.4.4}Daily Liquidation Bonus}{8}{subsubsection.5.4.4}%
+\contentsline {section}{\numberline {6}MCMC Hyperparameter Optimization}{8}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Hyperparameter Space}{8}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}Metropolis-Hastings Algorithm}{8}{subsection.6.2}%
+\contentsline {subsection}{\numberline {6.3}Adaptive Proposal Distribution}{8}{subsection.6.3}%
+\contentsline {subsection}{\numberline {6.4}Multi-Objective Optimization}{9}{subsection.6.4}%
+\contentsline {section}{\numberline {7}Performance Metrics and Evaluation}{9}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Training Metrics}{9}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.2}Trading Performance Metrics}{9}{subsection.7.2}%
+\contentsline {subsection}{\numberline {7.3}Risk Metrics}{10}{subsection.7.3}%
+\contentsline {section}{\numberline {8}Implementation Details}{10}{section.8}%
+\contentsline {subsection}{\numberline {8.1}Data Pipeline}{10}{subsection.8.1}%
+\contentsline {subsection}{\numberline {8.2}Training Pipeline}{10}{subsection.8.2}%
+\contentsline {subsection}{\numberline {8.3}Memory Management}{11}{subsection.8.3}%
+\contentsline {subsection}{\numberline {8.4}Parallel Processing}{11}{subsection.8.4}%
+\contentsline {section}{\numberline {9}Experimental Setup}{11}{section.9}%
+\contentsline {subsection}{\numberline {9.1}Market Data}{11}{subsection.9.1}%
+\contentsline {subsection}{\numberline {9.2}Training Configuration}{11}{subsection.9.2}%
+\contentsline {subsection}{\numberline {9.3}Hardware Requirements}{11}{subsection.9.3}%
+\contentsline {section}{\numberline {10}Results and Analysis}{12}{section.10}%
+\contentsline {subsection}{\numberline {10.1}MCMC Convergence}{12}{subsection.10.1}%
+\contentsline {subsection}{\numberline {10.2}Training Stability}{12}{subsection.10.2}%
+\contentsline {subsection}{\numberline {10.3}Performance Improvements}{12}{subsection.10.3}%
+\contentsline {section}{\numberline {11}Limitations and Future Work}{12}{section.11}%
+\contentsline {subsection}{\numberline {11.1}Current Limitations}{12}{subsection.11.1}%
+\contentsline {subsection}{\numberline {11.2}Future Enhancements}{12}{subsection.11.2}%
+\contentsline {section}{\numberline {12}Conclusion}{13}{section.12}%
+\contentsline {section}{\numberline {13}References}{13}{section.13}%
+\contentsline {section}{\numberline {A}Code Architecture}{13}{appendix.A}%
+\contentsline {subsection}{\numberline {A.1}Module Dependencies}{13}{subsection.A.1}%
+\contentsline {subsection}{\numberline {A.2}Key Configuration Parameters}{14}{subsection.A.2}%
+\contentsline {subsection}{\numberline {A.3}Performance Benchmarks}{14}{subsection.A.3}%

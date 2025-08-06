@@ -1,0 +1,49 @@
+# EvoRL Compatible Requirements (as of 2025-01-27)
+# These versions are confirmed to work together for EvoRL
+
+# JAX ecosystem - CUDA 11 compatible
+jax[cuda11_pip]==0.4.23
+jaxlib==0.4.23+cuda11.cudnn86
+flax==0.6.11
+optax==0.1.7
+chex==0.1.82
+tensorflow-probability==0.20.1
+orbax-checkpoint==0.4.4
+
+# Brax and dependencies
+brax==0.9.1
+dm-env==1.6
+trimesh==3.9.35
+pytinyrenderer==0.0.14
+
+# Core ML/RL dependencies
+numpy>=1.24,<1.27
+scipy>=1.9,<1.17
+gymnasium>=0.28.0
+
+# EvoRL dependencies
+hydra-core>=1.3.0
+omegaconf>=2.3.0
+wandb>=0.15.0
+
+# Utilities
+tqdm>=4.65.0
+matplotlib>=3.7.0
+tensorstore
+msgpack
+PyYAML>=5.4.1
+rich>=11.1
+
+# Flask for Brax visualization
+flask>=3.0.0
+flask-cors>=6.0.0
+
+# Note: Install EvoRL from local directory:
+# pip install -e ./evorl
+
+# Known Issues:
+# - JAX 0.7.0 has breaking changes that affect older packages
+# - Chex 0.1.82 with JAX 0.7.0 has compatibility issues
+# - Some experimental JAX APIs were removed
+#
+# Workaround: Use JAX 0.4.23 ecosystem for compatibility

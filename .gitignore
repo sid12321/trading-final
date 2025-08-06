@@ -1,0 +1,110 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Jupyter Notebook
+.ipynb_checkpoints
+*.ipynb
+
+# Virtual environments
+venv/
+env/
+ENV/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Data and models
+*.pkl
+*.h5
+*.hdf5
+*.csv
+*.json
+data/
+models/
+checkpoints/
+logs/
+tmp/
+
+# Credentials and sensitive files
+.env
+*.key
+credentials.json
+config_local.py
+
+# Test coverage
+htmlcov/
+.coverage
+.coverage.*
+.cache
+.pytest_cache/
+
+# Documentation builds
+docs/_build/
+
+# Backup files
+*.bak
+*.backup
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Selenium drivers
+chromedriver
+geckodriver
+*.log
+
+# Temporary files
+temp/
+tmp/
+*.tmp
+
+# Debug files
+debug_temp/
+debug_*.py
+
+# Archives
+archive/
+*.zip
+*.tar.gz
+
+# Large data files
+*.db
+*.sqlite
+*.sqlite3
+
+# Trading specific
+symposterior.csv
+mcmc_chain.pkl
+benchmark_results.csv
+hyperparameter_results.json
+training_progress.py
+checkpoint_*.pkl
+final_optimized_model_config.json
