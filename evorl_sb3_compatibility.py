@@ -12,7 +12,7 @@ import jax.numpy as jnp
 from typing import Tuple, Any, Dict
 from pathlib import Path
 
-basepath = '/home/sid12321/Desktop/Trading-Final'
+basepath = '/Users/skumar81/Desktop/Personal/trading-final'
 
 
 class EvoRLSB3CompatibleModel:

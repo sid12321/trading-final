@@ -21,7 +21,7 @@ import gc
 import joblib
 
 # Import parameters and utilities
-basepath = '/home/sid12321/Desktop/Trading-Final'
+basepath = '/Users/skumar81/Desktop/Personal/trading-final'
 os.chdir(basepath)
 
 from parameters import *

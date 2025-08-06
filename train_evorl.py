@@ -16,7 +16,7 @@ import argparse
 from datetime import datetime
 
 # Initialize JAX GPU support BEFORE any other imports
-basepath = '/home/sid12321/Desktop/Trading-Final'
+basepath = '/Users/skumar81/Desktop/Personal/trading-final'
 sys.path.insert(0, basepath)
 os.chdir(basepath)
 

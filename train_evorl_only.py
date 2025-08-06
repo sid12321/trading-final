@@ -12,7 +12,7 @@ import warnings
 from datetime import datetime
 
 # Setup paths and suppress warnings
-basepath = '/home/sid12321/Desktop/Trading-Final'
+basepath = '/Users/skumar81/Desktop/Personal/trading-final'
 sys.path.insert(0, basepath)
 os.chdir(basepath)
 warnings.filterwarnings('ignore')

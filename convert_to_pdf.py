@@ -123,7 +123,7 @@ def create_html_document(content):
 
 def main():
     # Read the markdown file
-    with open('/home/sid12321/Desktop/Trading-Final/TECHNICAL_DOCUMENTATION.md', 'r') as f:
+    with open('/Users/skumar81/Desktop/Personal/trading-final/TECHNICAL_DOCUMENTATION.md', 'r') as f:
         markdown_content = f.read()
     
     # Convert to HTML
@@ -133,7 +133,7 @@ def main():
     full_html = create_html_document(html_content)
     
     # Save HTML file
-    html_file = '/home/sid12321/Desktop/Trading-Final/TECHNICAL_DOCUMENTATION.html'
+    html_file = '/Users/skumar81/Desktop/Personal/trading-final/TECHNICAL_DOCUMENTATION.html'
     with open(html_file, 'w') as f:
         f.write(full_html)
     
@@ -141,7 +141,7 @@ def main():
     
     # Try to convert to PDF using wkhtmltopdf if available
     try:
-        pdf_file = '/home/sid12321/Desktop/Trading-Final/TECHNICAL_DOCUMENTATION.pdf'
+        pdf_file = '/Users/skumar81/Desktop/Personal/trading-final/TECHNICAL_DOCUMENTATION.pdf'
         subprocess.run(['wkhtmltopdf', '--page-size', 'A4', '--margin-top', '0.75in', 
                        '--margin-right', '0.75in', '--margin-bottom', '0.75in', 
                        '--margin-left', '0.75in', html_file, pdf_file], 
@@ -153,7 +153,7 @@ def main():
         
     # Try using chromium-browser if available
     try:
-        pdf_file = '/home/sid12321/Desktop/Trading-Final/TECHNICAL_DOCUMENTATION.pdf'
+        pdf_file = '/Users/skumar81/Desktop/Personal/trading-final/TECHNICAL_DOCUMENTATION.pdf'
         subprocess.run(['chromium-browser', '--headless', '--disable-gpu', '--print-to-pdf=' + pdf_file,
                        '--no-margins', html_file], 
                       check=True, capture_output=True)
@@ -164,7 +164,7 @@ def main():
         
     # Try using firefox if available
     try:
-        pdf_file = '/home/sid12321/Desktop/Trading-Final/TECHNICAL_DOCUMENTATION.pdf'
+        pdf_file = '/Users/skumar81/Desktop/Personal/trading-final/TECHNICAL_DOCUMENTATION.pdf'
         subprocess.run(['firefox', '--headless', '--print-to-pdf=' + pdf_file, html_file], 
                       check=True, capture_output=True)
         print(f"PDF file created using Firefox: {pdf_file}")

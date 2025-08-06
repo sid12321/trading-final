@@ -19,7 +19,7 @@ from datetime import timedelta
 from evorl_ppo_trainer import EvoRLPPOTrainer, create_evorl_trainer_from_data
 
 # Trading system imports
-basepath = '/home/sid12321/Desktop/Trading-Final'
+basepath = '/Users/skumar81/Desktop/Personal/trading-final'
 sys.path.insert(0, basepath)
 os.chdir(basepath)
 

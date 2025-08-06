@@ -26,7 +26,7 @@ import warnings
 warnings.filterwarnings('ignore')
 
 # Import base modules
-basepath = '/home/sid12321/Desktop/Trading-Final'
+basepath = '/Users/skumar81/Desktop/Personal/trading-final'
 os.chdir(basepath)
 
 from parameters import *

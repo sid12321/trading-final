@@ -54,7 +54,7 @@ logging.getLogger().setLevel(logging.ERROR)
 # Suppress JAX warnings specifically
 logging.getLogger('jax._src.xla_bridge').setLevel(logging.CRITICAL)
 
-basepath = '/home/sid12321/Desktop/Trading-Final'
+basepath = '/Users/skumar81/Desktop/Personal/trading-final'
 tmp_path = basepath+"/tmp/sb3_log/"
 check_path = basepath+"/tmp/checkpoints/"
 tensorboard_log_path = basepath+"/tmp/tensorboard_logs/"

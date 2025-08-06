@@ -6,7 +6,7 @@ echo "Setting up JAX GPU environment variables..."
 export CUDA_VISIBLE_DEVICES=0
 export JAX_PLATFORMS=cuda
 export XLA_PYTHON_CLIENT_PREALLOCATE=false
-export LD_LIBRARY_PATH=/home/sid12321/Desktop/Trading-Final/venv/lib/python3.12/site-packages/nvidia/cudnn/lib:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=/Users/skumar81/Desktop/Personal/trading-final/venv/lib/python3.12/site-packages/nvidia/cudnn/lib:$LD_LIBRARY_PATH
 
 echo "Environment variables set:"
 echo "  CUDA_VISIBLE_DEVICES=$CUDA_VISIBLE_DEVICES"

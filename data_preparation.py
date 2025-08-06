@@ -12,7 +12,7 @@ import pandas as pd
 from datetime import timedelta
 
 # Add path for imports
-sys.path.append('/home/sid12321/Desktop/Trading-Final')
+sys.path.append('/Users/skumar81/Desktop/Personal/trading-final')
 
 from parameters import *
 from lib import *

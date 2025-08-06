@@ -13,7 +13,7 @@ import threading
 from datetime import datetime
 
 # Setup path
-basepath = '/home/sid12321/Desktop/Trading-Final'
+basepath = '/Users/skumar81/Desktop/Personal/trading-final'
 os.chdir(basepath)
 
 def get_system_stats():

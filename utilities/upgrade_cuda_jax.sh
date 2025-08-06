@@ -74,7 +74,7 @@ nvcc --version
 print_status "Step 2: Installing JAX and JAXlib 0.4.26 with CUDA 12 support..."
 
 # Navigate to project directory
-cd /home/sid12321/Desktop/Trading-Final
+cd /Users/skumar81/Desktop/Personal/trading-final
 
 # Activate virtual environment if it exists
 if [ -d "venv" ]; then

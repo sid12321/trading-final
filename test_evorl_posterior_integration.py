@@ -13,7 +13,7 @@ import pandas as pd
 from pathlib import Path
 
 # Setup path
-basepath = '/home/sid12321/Desktop/Trading-Final'
+basepath = '/Users/skumar81/Desktop/Personal/trading-final'
 sys.path.insert(0, basepath)
 os.chdir(basepath)
 

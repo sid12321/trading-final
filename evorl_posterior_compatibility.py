@@ -11,7 +11,7 @@ import os
 import joblib
 from pathlib import Path
 
-basepath = '/home/sid12321/Desktop/Trading-Final'
+basepath = '/Users/skumar81/Desktop/Personal/trading-final'
 
 
 def create_posterior_compatibility_data(symbols: List[str], 

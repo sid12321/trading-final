@@ -27,7 +27,7 @@ def main():
     print("=== PyTorch + JAX CUDA Compatibility Fix ===")
     
     # Activate venv
-    venv_path = "/home/sid12321/Desktop/Trading-Final/venv/bin/activate"
+    venv_path = "/Users/skumar81/Desktop/Personal/trading-final/venv/bin/activate"
     if not os.path.exists(venv_path):
         print("❌ Virtual environment not found!")
         return
@@ -133,10 +133,10 @@ echo "JAX Backend: $(python -c 'import jax; print(jax.default_backend())' 2>/dev
 echo "PyTorch CUDA: $(python -c 'import torch; print(torch.cuda.is_available())' 2>/dev/null || echo 'Not available')"
 """
     
-    with open("/home/sid12321/Desktop/Trading-Final/cuda_env_optimized.sh", "w") as f:
+    with open("/Users/skumar81/Desktop/Personal/trading-final/cuda_env_optimized.sh", "w") as f:
         f.write(env_script)
     
-    os.chmod("/home/sid12321/Desktop/Trading-Final/cuda_env_optimized.sh", 0o755)
+    os.chmod("/Users/skumar81/Desktop/Personal/trading-final/cuda_env_optimized.sh", 0o755)
     
     print("\n✅ Fix completed!")
     print("\n📋 Next steps:")
