@@ -37,7 +37,7 @@ import seaborn as sns
 from matplotlib.collections import LineCollection
 
 # Machine learning libraries
-import gym
+import gymnasium as gym
 import joblib
 import onnx
 import onnxruntime as ort

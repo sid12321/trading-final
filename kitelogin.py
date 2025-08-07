@@ -32,9 +32,14 @@ def login_to_kite():
 
     time.sleep(5)  # Wait for page to load
     
-    # Initialize the Chrome service with local chromedriver
-    chromedriver_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "chromedriver")
-    service = Service(executable_path=chromedriver_path, log_path=os.devnull)
+    # Initialize the Chrome service with webdriver-manager (auto-downloads correct version)
+    try:
+        from webdriver_manager.chrome import ChromeDriverManager
+        service = Service(ChromeDriverManager().install(), log_path=os.devnull)
+    except ImportError:
+        # Fallback to local chromedriver if webdriver-manager not available
+        chromedriver_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "chromedriver")
+        service = Service(executable_path=chromedriver_path, log_path=os.devnull)
 
     time.sleep(5)  # Wait for page to load
     

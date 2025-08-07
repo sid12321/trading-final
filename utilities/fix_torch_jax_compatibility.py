@@ -82,7 +82,7 @@ try:
 except Exception as e:
     print(f'❌ JAX failed: {{e}}')
 
-print('\\n=== Testing PyTorch ===')
+print('/n=== Testing PyTorch ===')
 try:
     import torch
     print(f'PyTorch version: {{torch.__version__}}')

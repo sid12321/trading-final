@@ -11,6 +11,13 @@ import argparse
 import warnings
 from datetime import datetime
 
+# OPTIMIZATION: Configure threading for M4 Max 16 CPU cores BEFORE any imports
+os.environ['OMP_NUM_THREADS'] = '16'
+os.environ['MKL_NUM_THREADS'] = '16'
+os.environ['XLA_CPU_MULTI_THREAD_EIGEN'] = 'true'
+os.environ['JAX_ENABLE_X64'] = 'false'
+os.environ['OPENBLAS_NUM_THREADS'] = '16'
+
 # Setup paths and suppress warnings
 basepath = '/Users/skumar81/Desktop/Personal/trading-final'
 sys.path.insert(0, basepath)
@@ -18,7 +25,10 @@ os.chdir(basepath)
 warnings.filterwarnings('ignore')
 
 # Initialize JAX GPU FIRST
-from jax_gpu_init import init_jax_gpu, get_jax_status
+from jax_gpu_init import init_jax_gpu, get_jax_status, is_gpu_available
+
+# Import Metal compatibility layer for M4 Max
+from jax_metal_compat import setup_jax_for_metal, patch_jax_for_metal, restore_jax_functions
 
 # Import EvoRL complete pipeline
 from evorl_complete_pipeline import EvoRLCompletePipeline
@@ -217,18 +227,32 @@ def main():
     print("NO SB3 - Pure JAX/GPU Implementation")
     print("=" * 60)
     
-    # Initialize JAX GPU
+    # Initialize JAX GPU with Metal compatibility
     print("\n🔥 Initializing JAX GPU...")
+    
+    # Setup Metal compatibility first (for M4 Max)
+    has_metal = setup_jax_for_metal()
+    if has_metal:
+        print("🍎 Applying Metal compatibility patches...")
+        patch_jax_for_metal()
+    
+    # Initialize JAX GPU
     init_jax_gpu()
     jax_status = get_jax_status()
     
-    if jax_status['backend'] != 'gpu':
+    if not jax_status.get('has_gpu', False):
         print("❌ ERROR: JAX GPU backend not available!")
         print("   EvoRL requires GPU for optimal performance")
         print("   Please check your JAX installation")
+        print(f"   Current backend: {jax_status.get('backend', 'unknown')}")
+        print(f"   Available devices: {jax_status.get('devices', [])}")
         return 1
     
     print(f"✅ JAX GPU initialized: {jax_status['devices'][0]}")
+    if jax_status.get('gpu_type'):
+        print(f"   GPU Type: {jax_status['gpu_type']}")
+    if jax_status.get('gpu_memory'):
+        print(f"   GPU Memory: {jax_status['gpu_memory']}")
     
     # Get symbols
     symbols = args.symbols or TESTSYMBOLS
@@ -281,6 +305,11 @@ def main():
                 print(f"   Action: {decision['action']}")
                 print(f"   Confidence: {decision['confidence']:.2%}")
                 print(f"   Position: {decision['position_size']:.2%}")
+    
+    # Cleanup Metal compatibility patches
+    if has_metal:
+        print("🔧 Restoring original JAX functions...")
+        restore_jax_functions()
     
     # Final summary
     print("\n" + "=" * 60)

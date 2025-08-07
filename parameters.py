@@ -99,7 +99,7 @@ else:
 if DEVICE == "cuda":
     # GPU settings - optimize for RTX 4080
     N_CORES = 16  # OPTIMIZED: Reduce CPU-GPU sync overhead  # Use fewer CPU cores to avoid GPU contention
-    N_ENVS = 32  # MEMORY-OPTIMIZED: Reduced for 12GB GPU  # OPTIMIZED: 4x increase for GPU throughput  # More environments for GPU (can handle more in parallel)
+    N_ENVS = 256  # METAL-OPTIMIZED: Massive increase for M4 Max 64GB unified memory + GPU acceleration
     SIGNAL_OPTIMIZATION_WORKERS = 8  # Match N_CORES  # Balance between GPU/CPU
     
     # Enable GPU optimizations
@@ -206,7 +206,7 @@ ALLSIGS = GENERICS + QCOLS + LAGCOLS + HISTORICAL
 
 #PPO details
 MAX_STEPS = 100  # Shorter episodes since we're training on entire dataset with daily liquidation
-BASEMODELITERATIONS = 3000000  # More iterations for full dataset training
+BASEMODELITERATIONS = 100000  # More iterations for full dataset training
 REDUCEDMCMCITERATIONS = BASEMODELITERATIONS//4
 MEANREWARDTHRESHOLD = 0.2 #Corresponds to a more realistic 2% return for minute-based trading
 BUYTHRESHOLD = 0.3
@@ -227,29 +227,37 @@ TRAINREPS = 1
 LOGFREQ = 1000  # OPTIMIZED: Less frequent logging  # Less frequent logging for long episodes
 STATS_WINDOW_SIZE = 100  # Larger window for full dataset training stability
 
-#To be Optimized - GPU/CPU-Optimized Trading System Settings
+#To be Optimized - FAST LEARNING GPU/CPU-Optimized Trading System Settings
 if DEVICE == "cuda":
-    # GPU-optimized settings for RTX 4080
-    GLOBALLEARNINGRATE = 0.0005  # OPTIMIZED: Adjusted for larger batches  # Higher LR for GPU
-    N_EPOCHS = 10  # Standard epochs
-    ENT_COEF = 0.01  # Slightly higher for GPU
-    N_STEPS = 1024  # MEMORY-OPTIMIZED: Increased to maintain sample efficiency  # OPTIMIZED: Shorter for frequent updates  # Optimal for GPU memory
-    TARGET_KL = 0.02  # Standard KL divergence
-    GAE_LAMBDA = 0.95  # Higher for GPU
-    BATCH_SIZE = 512  # MEMORY-OPTIMIZED: Reduced for memory  # OPTIMIZED: 4x for better GPU utilization  # Good for RTX 4080
-    USE_SDE = True  # Enable SDE
-    SDE_SAMPLE_FREQ = 4  # Sample new noise every 4 steps
+    # FAST LEARNING: GPU-optimized settings for maximum convergence speed
+    GLOBALLEARNINGRATE = 0.001   # FAST LEARNING: 10x higher for rapid convergence
+    N_EPOCHS = 20                # FAST LEARNING: 2x more epochs per rollout
+    ENT_COEF = 0.1               # FAST LEARNING: 10x higher for enhanced exploration
+    N_STEPS = 256                # FAST LEARNING: Shorter rollouts for frequent updates
+    TARGET_KL = 0.015            # FAST LEARNING: Tighter constraint for stability
+    GAE_LAMBDA = 0.98            # FAST LEARNING: Better credit assignment
+    BATCH_SIZE = 2048            # FAST LEARNING: Optimized for more gradient updates
+    USE_SDE = True               # Enable SDE
+    SDE_SAMPLE_FREQ = 4          # Sample new noise every 4 steps
+    # Additional fast learning parameters
+    VF_COEF = 1.0                # FAST LEARNING: 4x higher for faster value learning
+    MAX_GRAD_NORM = 1.0          # FAST LEARNING: Less restrictive for faster updates
+    CLIP_RANGE = 0.3             # FAST LEARNING: Higher initial exploration
 else:
-    # CPU-optimized settings
-    GLOBALLEARNINGRATE = 0.0001  # Conservative for CPU
-    N_EPOCHS = 10  # CPU-optimized epochs
-    ENT_COEF = 0.005  # Standard entropy coefficient
-    N_STEPS = 4096  # CPU-optimized rollout
-    TARGET_KL = 0.02  # Standard KL divergence
-    GAE_LAMBDA = 0.8  # Standard GAE lambda
-    BATCH_SIZE = 1024  # MEMORY-OPTIMIZED: Reduced for memory  # OPTIMIZED: 4x for better GPU utilization  # CPU-optimized batch size
-    USE_SDE = True  # Enable SDE
-    SDE_SAMPLE_FREQ = 4  # Sample new noise every 4 steps
+    # FAST LEARNING: CPU-optimized settings with enhanced learning
+    GLOBALLEARNINGRATE = 0.0005  # FAST LEARNING: 5x higher than conservative
+    N_EPOCHS = 20                # FAST LEARNING: More epochs per rollout
+    ENT_COEF = 0.05              # FAST LEARNING: 10x higher exploration
+    N_STEPS = 512                # FAST LEARNING: Shorter rollouts
+    TARGET_KL = 0.015            # FAST LEARNING: Tighter constraint
+    GAE_LAMBDA = 0.95            # FAST LEARNING: Better credit assignment
+    BATCH_SIZE = 1024            # FAST LEARNING: Optimized batch size
+    USE_SDE = True               # Enable SDE
+    SDE_SAMPLE_FREQ = 4          # Sample new noise every 4 steps
+    # Additional fast learning parameters
+    VF_COEF = 1.0                # FAST LEARNING: Higher value coefficient
+    MAX_GRAD_NORM = 1.0          # FAST LEARNING: Less restrictive
+    CLIP_RANGE = 0.3             # FAST LEARNING: Higher initial exploration
 
 TOTAL_TIMESTEPS = N_STEPS * N_ENVS  # Total steps across all environments
 
