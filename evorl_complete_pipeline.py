@@ -198,9 +198,10 @@ class EvoRLCompletePipeline:
         # Create test environment
         test_env = StockTradingEnv(
             df=df_test,
-            nlags=NLAGS,
-            maximum_short_value=MAXIMUM_SHORT_VALUE,
-            cost_per_trade=COST_PER_TRADE,
+            NLAGS=NLAGS,
+            NUMVARS=len(finalsignalsp),
+            MAXIMUM_SHORT_VALUE=MAXIMUM_SHORT_VALUE,
+            COST_PER_TRADE=COST_PER_TRADE,
             finalsignalsp=finalsignalsp
         )
         
