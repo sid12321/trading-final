@@ -46,7 +46,8 @@ class EvoRLCompletePipeline:
                           rdflistp: Dict[str, pd.DataFrame],
                           lol: Dict[str, List[str]],
                           train_end_date: str = None,
-                          test_days: int = 30) -> Dict[str, Any]:
+                          test_days: int = 30,
+                          skip_training: bool = False) -> Dict[str, Any]:
         """
         Train models and evaluate on test period
         
@@ -94,8 +95,11 @@ class EvoRLCompletePipeline:
             print(f"   Test data: {len(df_test)} rows")
             print("-" * 40)
             
-            # Train model
-            train_results = self._train_symbol(symbol, df_train, finalsignalsp)
+            # Train or load model
+            if skip_training:
+                train_results = self._load_existing_model(symbol, df_train, finalsignalsp)
+            else:
+                train_results = self._train_symbol(symbol, df_train, finalsignalsp)
             
             if train_results['success']:
                 # Evaluate on test period
@@ -186,6 +190,58 @@ class EvoRLCompletePipeline:
             return {
                 'success': False,
                 'error': str(e)
+            }
+    
+    def _load_existing_model(self, symbol: str, df: pd.DataFrame, 
+                            finalsignalsp: List[str]) -> Dict[str, Any]:
+        """Load existing trained model for a symbol"""
+        
+        print(f"📁 Loading existing model for {symbol}...")
+        
+        try:
+            # Check if model exists
+            model_path = f"{basepath}/models/{symbol}localmodel_evorl"
+            normalizer_path = f'{basepath}/models/{symbol}qt_evorl.joblib'
+            
+            if not os.path.exists(f"{model_path}.pkl"):
+                raise FileNotFoundError(f"Model not found: {model_path}.pkl")
+            
+            if not os.path.exists(normalizer_path):
+                raise FileNotFoundError(f"Normalizer not found: {normalizer_path}")
+            
+            # Create trainer with same parameters as training would use
+            trainer = create_evorl_trainer_from_data(
+                df=df,
+                finalsignalsp=finalsignalsp,
+                n_steps=N_STEPS,
+                batch_size=BATCH_SIZE,
+                learning_rate=GLOBALLEARNINGRATE,
+                n_epochs=N_EPOCHS
+            )
+            
+            # Load the trained model
+            trainer.load_model(model_path)
+            
+            # Store trainer
+            self.trainers[symbol] = trainer
+            
+            print(f"✅ Loaded existing model for {symbol}")
+            
+            return {
+                'success': True,
+                'trainer': trainer,
+                'final_reward': 0.0,  # Unknown for pre-trained model
+                'training_time': 0.0,  # No training time
+                'model_path': f"{model_path}.pkl",
+                'normalizer_path': normalizer_path
+            }
+            
+        except Exception as e:
+            print(f"❌ Error loading model for {symbol}: {e}")
+            print("   Try training first without --skip-training flag")
+            return {
+                'success': False,
+                'error': f"Failed to load existing model: {str(e)}"
             }
     
     def _evaluate_test_period(self, symbol: str, df_test: pd.DataFrame,

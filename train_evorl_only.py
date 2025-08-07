@@ -58,6 +58,9 @@ Examples:
   
   # Train and deploy
   python train_evorl_only.py --deploy --test-days 30
+  
+  # Skip training and test evaluation (for testing fixes)
+  python train_evorl_only.py --symbols BPCL --skip-training --test-days 10
         """
     )
     
@@ -105,6 +108,12 @@ Examples:
         '--verbose',
         action='store_true',
         help='Enable verbose output'
+    )
+    
+    parser.add_argument(
+        '--skip-training',
+        action='store_true',
+        help='Skip training and go directly to evaluation (for testing fixes)'
     )
     
     return parser.parse_args()
@@ -275,13 +284,18 @@ def main():
     print("\n🏗️  Creating EvoRL Pipeline...")
     pipeline = EvoRLCompletePipeline(symbols=symbols)
     
-    # Train and evaluate
-    print("\n🚀 Starting Training and Evaluation...")
+    # Train and evaluate (or just evaluate if skipping training)
+    if args.skip_training:
+        print("\n⏭️  Skipping training, loading existing models for evaluation...")
+    else:
+        print("\n🚀 Starting Training and Evaluation...")
+    
     results = pipeline.train_and_evaluate(
         rdflistp=rdflistp,
         lol=lol,
         train_end_date=args.train_end_date,
-        test_days=args.test_days
+        test_days=args.test_days,
+        skip_training=args.skip_training
     )
     
     # Save deployment models if requested
